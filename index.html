@@ -18,22 +18,30 @@
         border: 1px solid #ccc;
       }
       .color-button {
-        margin: 5px;
-        padding: 10px;
+        padding: 15px;
         border: 1px solid black;
         cursor: pointer;
+      }
+      .color-button:not(:last-child) {
+        border-bottom: none;
+      }
+      #color-container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
       }
     </style>
   </head>
   <body>
     <div id="container"></div>
+    <div id="color-container"></div>
 
     <script>
       // Set up stage
       var stage = new Konva.Stage({
         container: "container",
-        width: 600,
-        height: 600,
+        width: 800,
+        height: 800,
       });
 
       var layer = new Konva.Layer();
@@ -165,6 +173,7 @@
       }
 
       // Add event listeners to buttons
+      const colorContainer = document.querySelector("#color-container");
       colors.forEach(function (color, index) {
         var button = document.createElement("button");
         button.className = "color-button";
@@ -173,7 +182,7 @@
           // Change selected color
           selectedColor = color;
         });
-        document.body.appendChild(button);
+        colorContainer.appendChild(button);
       });
 
       // Add event listener to detect taps
